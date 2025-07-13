@@ -131,6 +131,16 @@ docker-compose up -d --build
 docker-compose down
 ```
 
+## 🔗 Download AI Models
+
+Vì lý do dung lượng, các mô hình AI không được lưu trực tiếp trên GitHub.  
+Bạn cần tải về thủ công và giải nén vào đúng thư mục:
+
+- [Download intent_model_v8 (Google Drive)](https://drive.google.com/your-link)
+- [Download flan_t5_trained_model (Google Drive)](https://drive.google.com/your-link)
+
+**Sau khi tải về, giải nén vào:**
+
 ## 🌐 Truy cập ứng dụng
 
 Sau khi khởi động thành công:
@@ -188,6 +198,8 @@ kill -9 <PID>
 rm -rf node_modules package-lock.json
 npm install
 ```
+
+
 
 ### Lỗi Python dependencies
 ```bash
