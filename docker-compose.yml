@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:6.0
+    container_name: ai-support-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: ai_customer_support
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - ai-support-network
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ai-support-backend
+    restart: unless-stopped
+    environment:
+      - MONGO_URL=mongodb://admin:password123@mongodb:27017/ai_customer_support?authSource=admin
+      - DATABASE_NAME=ai_customer_support
+      - SECRET_KEY=your-super-secret-key-change-in-production
+      - DEBUG=True
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend:/app
+    networks:
+      - ai-support-network
+
+  # Admin Frontend
+  admin-frontend:
+    build:
+      context: ./frontend/admin
+      dockerfile: Dockerfile
+    container_name: ai-support-admin
+    restart: unless-stopped
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+      - REACT_APP_SOCKET_URL=http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - ai-support-network
+
+  # Customer Frontend
+  customer-frontend:
+    build:
+      context: ./frontend/customer
+      dockerfile: Dockerfile
+    container_name: ai-support-customer
+    restart: unless-stopped
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+      - REACT_APP_SOCKET_URL=http://localhost:8000
+    ports:
+      - "3001:3000"
+    depends_on:
+      - backend
+    networks:
+      - ai-support-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  ai-support-network:
+    driver: bridge 
