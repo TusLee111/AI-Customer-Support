@@ -136,10 +136,9 @@ docker-compose down
 Vì lý do dung lượng, các mô hình AI không được lưu trực tiếp trên GitHub.  
 Bạn cần tải về thủ công và giải nén vào đúng thư mục:
 
-- [Download intent_model_v8 (Google Drive)](https://drive.google.com/your-link)
-- [Download flan_t5_trained_model (Google Drive)](https://drive.google.com/your-link)
+- https://drive.google.com/file/d/14FbOTLEiYjioEvFPuyra1FvR4ZXojjGZ/view?usp=sharing
 
-**Sau khi tải về, giải nén vào:**
+**Sau khi tải về, giải nén vào thư mục backend/models**
 
 ## 🌐 Truy cập ứng dụng
 
