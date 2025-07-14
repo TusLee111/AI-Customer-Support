@@ -68,6 +68,7 @@ cp env.example .env
 
 # Khởi động backend
 python -m uvicorn app:socket_app --reload --host 0.0.0.0 --port 8000
+Hoặc python app.py
 ```
 
 #### Bước 3: Cài đặt frontend admin
