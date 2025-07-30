@@ -52,7 +52,7 @@ run.bat
 ```bash
 # Cài đặt Docker Desktop từ https://www.docker.com/
 # Chạy MongoDB container
-docker run -d -p 27017:27017 --name mongodb mongo:6.0
+docker run -d --name mongodb -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password123 mongo:6.0
 ```
 
 #### Cài đặt trực tiếp
