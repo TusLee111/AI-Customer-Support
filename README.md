@@ -18,17 +18,37 @@ Hệ thống hỗ trợ khách hàng sử dụng AI, gồm các thành phần ch
 
 ---
 
-### **Lưu ý về file cấu hình môi trường (`.env`)**
+### Lưu ý về file cấu hình môi trường (`.env`)
 
-> **File `.env` KHÔNG được upload lên GitHub vì lý do bảo mật.**  
-> **Bạn cần tự tạo file `.env` từ file mẫu `env.example` trước khi chạy backend.**
+> File `.env` KHÔNG được upload lên GitHub vì lý do bảo mật.  
+> Bạn cần tự tạo file `.env` từ file mẫu `env.example` trước khi chạy backend.
 
 **Cách tạo file `.env`:**
 ```bash
 # Trong thư mục backend, chạy:
 cp env.example .env
 # (Trên Windows: copy env.example .env)
-# Sau đó chỉnh sửa file .env nếu cần (ví dụ: đổi tên database, secret key...)
+```
+**Sau đó, mở file `.env` và chỉnh sửa các giá trị sau cho phù hợp với môi trường của bạn:**
+- `MONGO_URL`: Chuỗi kết nối MongoDB, thay `your_password` bằng mật khẩu thật nếu có.
+- `DATABASE_NAME`: Tên database MongoDB.
+- `SECRET_KEY`: Chuỗi bí mật dùng cho JWT, nên thay bằng chuỗi mạnh, không chia sẻ công khai.
+- `ALGORITHM`: Thuật toán mã hóa JWT, mặc định là `HS256`.
+- `ACCESS_TOKEN_EXPIRE_MINUTES`: Thời gian hết hạn token (tính bằng phút), có thể giữ mặc định hoặc thay đổi theo nhu cầu.
+
+**Ví dụ file `.env` thực tế:**
+```
+MONGO_URL="mongodb://admin:my_real_password@localhost:27017/ai_customer_support?authSource=admin"
+DATABASE_NAME="ai_customer_support"
+SECRET_KEY="my_real_secret"
+ALGORITHM="HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
+
+**Lưu ý:**
+- Tên biến trong file `env.example` phải giống hoàn toàn với file `.env` và code backend.
+- Nếu thêm hoặc đổi tên biến trong code, hãy cập nhật cả hai file.
+- Nên thêm comment giải thích từng biến trong file `env.example` để người dùng mới dễ hiểu. 
 ```
 
 ---
