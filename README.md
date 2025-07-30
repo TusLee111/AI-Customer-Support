@@ -41,7 +41,7 @@ chmod +x run.sh setup.sh
 #### Bước 1: Cài đặt MongoDB
 ```bash
 # Sử dụng Docker (khuyến nghị)
-docker run -d -p 27017:27017 --name mongodb mongo:6.0
+docker run -d --name mongodb -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password123 mongo:6.0
 
 # Hoặc cài đặt trực tiếp
 # Ubuntu: sudo apt-get install mongodb
